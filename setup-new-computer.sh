@@ -30,8 +30,8 @@ README="https://github.com/rvshare/rvshare-setup"
 
 # IDEs to make availabe. Please also adjust code to brew cask install
 options[0]="Visual Studio Code";    devtoolchoices[0]="+"
-options[5]="Sublime Text";          devtoolchoices[4]=""
-options[6]="iTerm2";                devtoolchoices[5]=""
+options[5]="Sublime Text";          devtoolchoices[5]=""
+options[6]="iTerm2";                devtoolchoices[6]=""
 
 
 #===============================================================================
@@ -275,6 +275,7 @@ printDivider
 printHeading "Installing Homebrew"
 printDivider
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 printDivider
     echo "✔ Setting Path to /usr/local/bin:\$PATH"
         export PATH=/usr/local/bin:$PATH
