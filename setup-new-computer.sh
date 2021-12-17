@@ -293,9 +293,7 @@ printDivider
 
 # Install  Apps
 printHeading "Installing Applications"
-    printStep "Slack"                       "brew install --cask slack"
     printStep "Firefox"                     "brew install --cask firefox"
-    printStep "Google Chrome"               "brew install --cask google-chrome"
     printStep "Docker for Mac"              "brew install --cask docker"
     printStep "Postman"                     "brew install --cask postman"
     printStep "Github"                      "brew install --cask github"
