@@ -23,7 +23,7 @@ VERSION="v2.1.0"
 #      Use the email and name you use for Github
 #
 #   5. Follow the Post Installation Instructions in the Readme:
-README="https://github.com/vendasta/setup-new-computer-script#post-installation-instructions"
+README="https://github.com/rvshare/rvshare-setup"
 #  
 #===============================================================================
 
@@ -286,11 +286,8 @@ printDivider
 
 # Install Utilities
 printHeading "Installing Brew Packages"
-    printStep "Bash"                        "brew install bash"
-    printStep "bash-completion"             "brew install bash-completion"
     printStep "zsh-completions"             "brew install zsh-completions"
     printStep "Git"                         "brew install git"
-    printStep "Ruby"                        "brew install ruby"
 printDivider
 
 
@@ -301,6 +298,9 @@ printHeading "Installing Applications"
     printStep "Google Chrome"               "brew install --cask google-chrome"
     printStep "Docker for Mac"              "brew install --cask docker"
     printStep "Postman"                     "brew install --cask postman"
+    printStep "Github"                      "brew install --cask github"
+    printStep "Alfred"                      "brew install --cask alfred"
+    
     # Install Visual Studio Code
     if [[ "${devtoolchoices[0]}" == "+" ]]; then
         printStep "Visual Studio Code"      "brew install --cask visual-studio-code"
@@ -359,6 +359,29 @@ printHeading "System Tweaks"
         defaults write com.google.Chrome.canary DisablePrintPreview -bool true
         defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
         defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
+
+    echo "✔ Other tweaks"
+        # Disable auto-correct
+        defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+        
+        # show battery percentage
+        defaults write com.apple.menuextra.battery ShowPercent -bool true
+
+        # Show Bluetooth in the menu bar
+        defaults write com.apple.systemuiserver "NSStatusItem Visible com.apple.menuextra.bluetooth" -int 0
+        # don't hide files
+        defaults write com.apple.Finder AppleShowAllFiles true
+
+        # disable shake to locate mouse pointer
+        defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool YES
+
+        # fix key repeat in vs code. I don't use it that often, but this is necessary when I do
+        defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+        # reboot systemUIServer and the dock to enable defaults to take effect
+        killall -KILL Dock
+        killall -KILL SystemUIServer
+
 printDivider
 
 
