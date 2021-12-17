@@ -296,6 +296,7 @@ printHeading "Installing Applications"
     printStep "Postman"                     "brew install --cask postman"
     printStep "Github"                      "brew install --cask github"
     printStep "Alfred"                      "brew install --cask alfred"
+    printStep "Pritunl"                      "brew install --cask pritunl"
     
     # Install Visual Studio Code
     if [[ "${devtoolchoices[0]}" == "+" ]]; then
