@@ -111,9 +111,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # Setting up Path for Homebrew
 export PATH=/usr/local/sbin:\$PATH
 
-# Setup Path for Local Python Installs
-export PATH=\$PATH:\$HOME/Library/Python/2.7/bin
-
 # Bash Autocompletion
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX="\$(brew --prefix)"
@@ -372,9 +369,6 @@ printHeading "System Tweaks"
 
         # disable shake to locate mouse pointer
         defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool YES
-
-        # fix key repeat in vs code. I don't use it that often, but this is necessary when I do
-        defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 
         # reboot systemUIServer and the dock to enable defaults to take effect
         killall -KILL Dock
