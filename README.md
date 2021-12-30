@@ -46,12 +46,6 @@ Afer you have run the script, please complete the following steps to finish sett
    
    <br>
 
-2. **Vendasta specific tools**\
-   Follow our onboarding document to complete your setup:
-   - [Onboarding New Developers - Setup New Developer’s Computer - Next Steps][nextsteps]
-   
-   [nextsteps]: https://vendasta.jira.com/wiki/spaces/RD/pages/199032984/Onboarding+New+Developers#New-Dev%5BhardBreak%5DSetup-New-Developer%E2%80%99s-Computer-with-a-script
-
 <br><br>
 
 
@@ -86,10 +80,6 @@ If `pip` installation fails when using `sudo -H /usr/bin/easy_install pip` try r
 
 <br>
 
-**Fix Python Google SDK errors**\
-If you're seeing errors like [`ImportError: cannot import name apiproxy`](https://issuetracker.google.com/issues/202171426) or other google app engine errors, try to downgrade the SDK to older version by running `gcloud components update --version 359.0.0`
-
-<br>
 
 **Installing Node versions**\
 Use nvm to install and upgrade different versions of Node. [Official docs][nvm docs] \
@@ -185,20 +175,6 @@ if type brew &>/dev/null; then
     done
   fi
 fi
-
-# Google Cloud SDK
-[ -e "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc" ] && 
-	source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-[ -e "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc" ] && 
-	source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
-
-# Golang
-export GOPRIVATE="github.com/vendasta"
-export GOPROXY="direct"
-export GO111MODULE="on"
-export GOPATH=$HOME/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
 
 # NVM
 # This needs to be after "Setting up Path for Homebrew" to override Homebrew Node
@@ -336,41 +312,6 @@ node-upgrade() {
 </details>
 
  
- 
- ### Languages
- <details>
-  <summary>Go</summary>
-  
-   ```sh
-   mkdir -p ~/go
-   brew install go
-   go env -w GOPRIVATE="github.com/vendasta"
-   ```
-</details>
-
-
-<details>
-  <summary>Mac OS Python (Installing Pip, Invoke, Requests, lxml, pyCrypto, Virtualenv)</summary>
-  
-   ```sh
-   sudo -H /usr/bin/easy_install pip==20.3.4    # Installing Pip for MacOS Python
-   sudo -H pip install --upgrade "pip < 21.0"   # Upgrading Pip to last python2 supported version
-   sudo -H pip install --quiet invoke
-   sudo -H pip install --quiet requests
-   sudo -H pip install --quiet lxml
-   sudo -H pip install --quiet pyCrypto
-   sudo -H pip install --quiet virtualenv
-   ```
-</details>
-
-
-<details>
-  <summary>Homebrew Python 3 (with pip3)</summary>
-  
-```sh
-brew reinstall python
-```
-</details>
 
 
 <details>
@@ -423,28 +364,6 @@ brew install ruby
 ```
 </details>
 	   
-
-<details>
-  <summary>Google Cloud Components</summary>
-  
-```sh
-brew install --cask google-cloud-sdk
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
-if [ -e ~/google-cloud-sdk ]; then
-    echo "✔ ~/google-cloud-sdk exists. Skipping"
-else
-    echo "✔ Creating ~/google-cloud-sdk symlink"
-    ln -s "$(brew --prefix)/Caskroom/google-cloud-sdk" ~/google-cloud-sdk &>/dev/null
-    # make a convenience symlink at the install path for google-cloud-sdk when installed manually
-fi
-gcloud components install app-engine-go --quiet
-gcloud components install app-engine-python --quiet
-gcloud components install app-engine-python-extras --quiet
-gcloud components install kubectl --quiet
-gcloud components install docker-credential-gcr --quiet
-```
-</details>
 
 
 ### Applications
@@ -504,41 +423,6 @@ brew install --cask visual-studio-code
 ```
 </details>
 
-
-<details>
-  <summary>Jetbrains Toolbox</summary>
-  
-```sh
-brew install --cask jetbrains-toolbox
-```
-</details>
-
-
-<details>
-  <summary>Pycharm</summary>
-  
-```sh
-brew install --cask pycharm
-```
-</details>
-
-
-<details>
-  <summary>Goland</summary>
-  
-```sh
-brew install --cask goland
-```
-</details>
-
-
-<details>
-  <summary>WebStorm</summary>
-  
-```sh
-brew install --cask webstorm
-```
-</details>
 
 
 <details>
