@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v2.1.0"
+VERSION="v2.1.1"
 #===============================================================================
 # title           setup-new-computer.sh
 # author          jkesler@vendasta.com
@@ -30,8 +30,8 @@ README="https://github.com/rvshare/rvshare-setup"
 
 # IDEs to make availabe. Please also adjust code to brew cask install
 options[0]="Visual Studio Code";    devtoolchoices[0]="+"
-options[5]="Sublime Text";          devtoolchoices[5]=""
-options[6]="iTerm2";                devtoolchoices[6]=""
+options[1]="Sublime Text";          devtoolchoices[1]=""
+options[2]="iTerm2";                devtoolchoices[2]=""
 
 
 #===============================================================================
@@ -296,18 +296,20 @@ printHeading "Installing Applications"
     printStep "Postman"                     "brew install --cask postman"
     printStep "Github"                      "brew install --cask github"
     printStep "Alfred"                      "brew install --cask alfred"
-    printStep "Pritunl"                      "brew install --cask pritunl"
-    
+    printStep "Pritunl"                     "brew install --cask pritunl"
+    printStep "Envkey"                      "brew install --cask envkey"
+    printStep "Zoom"                        "brew install --cask zoom"
+
     # Install Visual Studio Code
     if [[ "${devtoolchoices[0]}" == "+" ]]; then
         printStep "Visual Studio Code"      "brew install --cask visual-studio-code"
     fi
     # Install Sublime Text
-    if [[ "${devtoolchoices[5]}" == "+" ]]; then
+    if [[ "${devtoolchoices[1]}" == "+" ]]; then
         printStep "Sublime Text"            "brew install --cask sublime-text"
     fi
     # Install iTerm2
-    if [[ "${devtoolchoices[6]}" == "+" ]]; then
+    if [[ "${devtoolchoices[2]}" == "+" ]]; then
         printStep "iTerm2"                  "brew install --cask iterm2"
     fi
 printDivider
@@ -353,9 +355,7 @@ printHeading "System Tweaks"
 
     echo "✔ Chrome: Use the system print dialog and expand dialog by default"
         defaults write com.google.Chrome DisablePrintPreview -bool true
-        defaults write com.google.Chrome.canary DisablePrintPreview -bool true
         defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
-        defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
     echo "✔ Other tweaks"
         # Disable auto-correct
@@ -371,6 +371,10 @@ printHeading "System Tweaks"
 
         # disable shake to locate mouse pointer
         defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool YES
+
+        # global gitignore
+        echo .DS_Store >> ~/.gitignore
+        git config --global core.excludesfile ~/.gitignore
 
         # reboot systemUIServer and the dock to enable defaults to take effect
         killall -KILL Dock
